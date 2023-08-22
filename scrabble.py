@@ -18,12 +18,28 @@ brownie_points = score_word("BROWNIE")
 # SCORING A GAME
 player_to_words = {"player1": ["BLUE", "TENNIS", "EXIT"], "wordNerd": ["EARTH", "EYES", "MACHINE"], "Lexi Con": ["ERASER", "BELLY", "HUSKY"], "Prof Reader": ["ZAP", "COMA", "PERIOD"]}
 
-player_to_points = {}
+def update_point_totals(game_dict):
+  player_to_points = {}
 
-for player, words in player_to_words.items():
+  for player, words in game_dict.items():
     player_points = 0
+
     for word in words:
         player_points += score_word(word)
     player_to_points[player] = player_points
 
-print(player_to_points)
+  return player_to_points
+
+# print(update_point_totals(player_to_words))
+
+# ADDING A WORD TO A PLAYER'S LIST
+def play_word(player, word):
+    if player in player_to_words.keys():
+        player_to_words[player].append(word)
+
+play_word("player1", "BOSS")
+print("WORDS:")
+print(player_to_words)
+print()
+print("SCORE:")
+print(update_point_totals(player_to_words))
